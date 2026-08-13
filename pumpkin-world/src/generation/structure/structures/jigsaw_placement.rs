@@ -303,9 +303,6 @@ impl JigsawPlacement {
                             break;
                         }
 
-                        let Some(target_size) = get_element_size(&element) else {
-                            continue;
-                        };
                         let target_projection = element.projection;
                         let target_rigid = target_projection == JigsawProjection::Rigid;
 
@@ -320,6 +317,10 @@ impl JigsawPlacement {
                             let j = context.random.next_bounded_i32(i as i32 + 1) as usize;
                             rotations.swap(i, j);
                         }
+
+                        let Some(target_size) = get_element_size(&element) else {
+                            continue;
+                        };
 
                         for target_rotation in rotations {
                             let target_jigsaws = get_element_jigsaw_blocks(&element);
