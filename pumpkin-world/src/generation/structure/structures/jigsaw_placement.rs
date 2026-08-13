@@ -192,10 +192,10 @@ impl JigsawPlacement {
             (center_y - max_distance_from_center.vertical)
                 .max(context.min_y + dimension_padding.bottom),
             center_z - max_distance_from_center.horizontal,
-            center_x + max_distance_from_center.horizontal + 1,
+            center_x + max_distance_from_center.horizontal,
             (center_y + max_distance_from_center.vertical + 1)
                 .min(context.min_y + 320 - dimension_padding.top),
-            center_z + max_distance_from_center.horizontal + 1,
+            center_z + max_distance_from_center.horizontal,
         );
 
         let mut jigsaw_blocks = Vec::new();
