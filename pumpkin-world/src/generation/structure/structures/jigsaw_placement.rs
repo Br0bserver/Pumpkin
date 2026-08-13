@@ -262,6 +262,14 @@ impl JigsawPlacement {
                 let mut source_jigsaws =
                     std::mem::take(&mut pieces[source_piece_idx].jigsaw_blocks);
 
+                trace_shuffle(
+                    &context.random,
+                    "source_jigsaws",
+                    source_piece_idx,
+                    &pieces[source_piece_idx].element,
+                    source_jigsaws.len(),
+                );
+
                 for i in (1..source_jigsaws.len()).rev() {
                     let j = context.random.next_bounded_i32(i as i32 + 1) as usize;
                     source_jigsaws.swap(i, j);
@@ -313,6 +321,14 @@ impl JigsawPlacement {
                             Rotation::CounterClockwise90,
                         ];
 
+                        trace_shuffle(
+                            &context.random,
+                            "rotations",
+                            source_piece_idx,
+                            &element,
+                            rotations.len(),
+                        );
+
                         for i in (1..4).rev() {
                             let j = context.random.next_bounded_i32(i as i32 + 1) as usize;
                             rotations.swap(i, j);
@@ -326,14 +342,20 @@ impl JigsawPlacement {
                             let target_jigsaws = get_element_jigsaw_blocks(&element);
 
                             let mut target_jigsaws_shuffled = target_jigsaws.clone();
+                            trace_shuffle(
+                                &context.random,
+                                "target_jigsaws",
+                                source_piece_idx,
+                                &element,
+                                target_jigsaws_shuffled.len(),
+                            );
                             for i in (1..target_jigsaws_shuffled.len()).rev() {
                                 let j = context.random.next_bounded_i32(i as i32 + 1) as usize;
                                 target_jigsaws_shuffled.swap(i, j);
                             }
 
-                            target_jigsaws_shuffled.sort_by_key(|jigsaw| {
-                                std::cmp::Reverse(jigsaw.selection_priority)
-                            });
+                            target_jigsaws_shuffled
+                                .sort_by_key(|jigsaw| std::cmp::Reverse(jigsaw.selection_priority));
                             for target_jigsaw in target_jigsaws_shuffled {
                                 if !can_attach(source_jigsaw, &target_jigsaw, target_rotation) {
                                     continue;
@@ -577,6 +599,27 @@ impl JigsawPlacement {
             collector: Arc::new(std::sync::Mutex::new(collector)),
         })
     }
+}
+
+fn trace_shuffle(
+    random: &pumpkin_util::random::RandomGenerator,
+    operation: &str,
+    source_piece_idx: usize,
+    element: &PoolElement,
+    len: usize,
+) {
+    let Some(call) = random.bounded_trace_call() else {
+        return;
+    };
+    if !(14_770..=14_790).contains(&call) {
+        return;
+    }
+
+    let mut templates = Vec::new();
+    element.for_each_template(|name, _, _, _| templates.push(name.to_owned()));
+    println!(
+        "PUMPKIN_RANDOM_CONTEXT call={call:06} operation={operation} source_piece={source_piece_idx} templates={templates:?} len={len}"
+    );
 }
 
 // Helper to determine the max Y height of a pool for the expansion hack

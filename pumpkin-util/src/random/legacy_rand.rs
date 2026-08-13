@@ -46,6 +46,11 @@ impl LegacyRand {
         self.bounded_trace_call = Some(0);
     }
 
+    #[must_use]
+    pub const fn bounded_trace_call(&self) -> Option<usize> {
+        self.bounded_trace_call
+    }
+
     /// Generates the next random value and advances the internal state.
     ///
     /// This implements the core LCG algorithm: `seed = seed * 0x5DEECE66D + 11`
