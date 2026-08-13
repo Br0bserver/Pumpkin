@@ -763,6 +763,10 @@ fn get_jigsaw_blocks(template: &StructureTemplate) -> Vec<JigsawBlock> {
             jigsaws.push(jigsaw);
         }
     }
+    // Vanilla groups all block-entity entries together when loading a template,
+    // then orders that group by Y, X, and Z. Every jigsaw carries NBT, so its
+    // pre-shuffle order must follow the same coordinate ordering.
+    jigsaws.sort_by_key(|jigsaw| (jigsaw.pos.0.y, jigsaw.pos.0.x, jigsaw.pos.0.z));
     jigsaws
 }
 
