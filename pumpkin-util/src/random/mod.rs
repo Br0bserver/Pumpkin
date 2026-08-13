@@ -56,16 +56,6 @@ pub enum RandomGenerator {
     Legacy(LegacyRand),
 }
 
-impl RandomGenerator {
-    #[must_use]
-    pub const fn bounded_trace_call(&self) -> Option<usize> {
-        match self {
-            Self::Legacy(random) => random.bounded_trace_call(),
-            Self::Xoroshiro(_) => None,
-        }
-    }
-}
-
 /// Unified random number deriver enum for creating child RNGs.
 ///
 /// Derivers are used to create new independent random generators from a parent seed,

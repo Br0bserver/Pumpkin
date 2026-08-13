@@ -262,14 +262,6 @@ impl JigsawPlacement {
                 let mut source_jigsaws =
                     std::mem::take(&mut pieces[source_piece_idx].jigsaw_blocks);
 
-                trace_shuffle(
-                    &context.random,
-                    "source_jigsaws",
-                    source_piece_idx,
-                    &pieces[source_piece_idx].element,
-                    source_jigsaws.len(),
-                );
-
                 for i in (1..source_jigsaws.len()).rev() {
                     let j = context.random.next_bounded_i32(i as i32 + 1) as usize;
                     source_jigsaws.swap(i, j);
@@ -321,14 +313,6 @@ impl JigsawPlacement {
                             Rotation::CounterClockwise90,
                         ];
 
-                        trace_shuffle(
-                            &context.random,
-                            "rotations",
-                            source_piece_idx,
-                            &element,
-                            rotations.len(),
-                        );
-
                         for i in (1..4).rev() {
                             let j = context.random.next_bounded_i32(i as i32 + 1) as usize;
                             rotations.swap(i, j);
@@ -342,13 +326,6 @@ impl JigsawPlacement {
                             let target_jigsaws = get_element_jigsaw_blocks(&element);
 
                             let mut target_jigsaws_shuffled = target_jigsaws.clone();
-                            trace_shuffle(
-                                &context.random,
-                                "target_jigsaws",
-                                source_piece_idx,
-                                &element,
-                                target_jigsaws_shuffled.len(),
-                            );
                             for i in (1..target_jigsaws_shuffled.len()).rev() {
                                 let j = context.random.next_bounded_i32(i as i32 + 1) as usize;
                                 target_jigsaws_shuffled.swap(i, j);
@@ -486,65 +463,6 @@ impl JigsawPlacement {
                                         .iter()
                                         .any(|box_| boxes_intersect(box_, &target_collision_box));
 
-                                if context
-                                    .random
-                                    .bounded_trace_call()
-                                    .is_some_and(|call| call == 14_782)
-                                {
-                                    let collisions = space
-                                        .occupied
-                                        .iter()
-                                        .enumerate()
-                                        .filter(|(_, box_)| {
-                                            boxes_intersect(box_, &target_collision_box)
-                                        })
-                                        .map(|(index, box_)| {
-                                            format!(
-                                                "{index}:({},{},{}..{},{},{})",
-                                                box_.min.x,
-                                                box_.min.y,
-                                                box_.min.z,
-                                                box_.max.x,
-                                                box_.max.y,
-                                                box_.max.z
-                                            )
-                                        })
-                                        .collect::<Vec<_>>();
-                                    let mut templates = Vec::new();
-                                    element.for_each_template(|name, _, _, _| {
-                                        templates.push(name.to_owned());
-                                    });
-                                    println!(
-                                        "PUMPKIN_CANDIDATE source_piece={source_piece_idx} source_jigsaw=({},{},{}) facing=({},{},{}) templates={templates:?} rotation={target_rotation:?} target_jigsaw=({},{},{}) target_pos=({},{},{}) box=({},{},{}..{},{},{}) collision_box=({},{},{}..{},{},{}) space={} inside={} collisions={collisions:?} can_place={can_place}",
-                                        source_jigsaw_pos.0.x,
-                                        source_jigsaw_pos.0.y,
-                                        source_jigsaw_pos.0.z,
-                                        source_facing.to_vector().x,
-                                        source_facing.to_vector().y,
-                                        source_facing.to_vector().z,
-                                        target_jigsaw.pos.0.x,
-                                        target_jigsaw.pos.0.y,
-                                        target_jigsaw.pos.0.z,
-                                        target_pos.0.x,
-                                        target_pos.0.y,
-                                        target_pos.0.z,
-                                        target_box.min.x,
-                                        target_box.min.y,
-                                        target_box.min.z,
-                                        target_box.max.x,
-                                        target_box.max.y,
-                                        target_box.max.z,
-                                        target_collision_box.min.x,
-                                        target_collision_box.min.y,
-                                        target_collision_box.min.z,
-                                        target_collision_box.max.x,
-                                        target_collision_box.max.y,
-                                        target_collision_box.max.z,
-                                        collision_space,
-                                        is_box_inside(&space.bounds, &target_collision_box),
-                                    );
-                                }
-
                                 if can_place {
                                     collision_spaces[collision_space]
                                         .occupied
@@ -658,27 +576,6 @@ impl JigsawPlacement {
             collector: Arc::new(std::sync::Mutex::new(collector)),
         })
     }
-}
-
-fn trace_shuffle(
-    random: &pumpkin_util::random::RandomGenerator,
-    operation: &str,
-    source_piece_idx: usize,
-    element: &PoolElement,
-    len: usize,
-) {
-    let Some(call) = random.bounded_trace_call() else {
-        return;
-    };
-    if !(14_770..=14_790).contains(&call) {
-        return;
-    }
-
-    let mut templates = Vec::new();
-    element.for_each_template(|name, _, _, _| templates.push(name.to_owned()));
-    println!(
-        "PUMPKIN_RANDOM_CONTEXT call={call:06} operation={operation} source_piece={source_piece_idx} templates={templates:?} len={len}"
-    );
 }
 
 // Helper to determine the max Y height of a pool for the expansion hack

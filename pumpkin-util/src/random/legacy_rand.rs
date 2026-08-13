@@ -18,7 +18,6 @@ pub struct LegacyRand {
     seed: u64,
     /// Stored Gaussian value for the next Gaussian generation.
     internal_next_gaussian: Option<f64>,
-    bounded_trace_call: Option<usize>,
 }
 
 impl LegacyRand {
@@ -38,17 +37,7 @@ impl LegacyRand {
         Self {
             seed: (seed ^ 0x0005_DEEC_E66D) & 0xFFFF_FFFF_FFFF,
             internal_next_gaussian: None,
-            bounded_trace_call: None,
         }
-    }
-
-    pub fn enable_bounded_trace(&mut self) {
-        self.bounded_trace_call = Some(0);
-    }
-
-    #[must_use]
-    pub const fn bounded_trace_call(&self) -> Option<usize> {
-        self.bounded_trace_call
     }
 
     /// Generates the next random value and advances the internal state.
@@ -109,22 +98,17 @@ impl RandomImpl for LegacyRand {
     }
 
     fn next_bounded_i32(&mut self, bound: i32) -> i32 {
-        let value = if (bound & bound.wrapping_sub(1)) == 0 {
+        if (bound & bound.wrapping_sub(1)) == 0 {
             (i64::from(bound).wrapping_mul(i64::from(self.next(31))) >> 31) as i32
         } else {
             loop {
                 let i = self.next(31);
                 let j = i % bound;
                 if (i.wrapping_sub(j).wrapping_add(bound.wrapping_sub(1))) >= 0 {
-                    break j;
+                    return j;
                 }
             }
-        };
-        if let Some(call) = &mut self.bounded_trace_call {
-            println!("PUMPKIN_RANDOM call={call:06} bound={bound} value={value}");
-            *call += 1;
         }
-        value
     }
 
     fn next_i64(&mut self) -> i64 {

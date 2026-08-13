@@ -342,17 +342,6 @@ impl TemplatePool {
             .iter()
             .flat_map(|element| std::iter::repeat_n(element.clone(), element.weight as usize))
             .collect::<Vec<_>>();
-        if random
-            .bounded_trace_call()
-            .is_some_and(|call| (14_770..=14_790).contains(&call))
-        {
-            println!(
-                "PUMPKIN_RANDOM_CONTEXT call={:?} operation=pool_shuffle pool={} len={}",
-                random.bounded_trace_call(),
-                self.id,
-                elements.len()
-            );
-        }
         for index in (1..elements.len()).rev() {
             let other = random.next_bounded_i32(index as i32 + 1) as usize;
             elements.swap(index, other);
