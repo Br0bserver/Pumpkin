@@ -13,7 +13,6 @@ use std::{
 pub struct Biome {
     pub id: u8,
     pub registry_id: &'static str,
-    pub be_network_id: u8,
     pub weather: Weather,
     pub features: &'static [&'static [crate::placed_feature::PlacedFeature]],
     pub creature_spawn_probability: f32,
@@ -86,7 +85,6 @@ impl Biome {
     pub const BADLANDS: Biome = Biome {
         id: 0,
         registry_id: "badlands",
-        be_network_id: 37u8,
         weather: Weather::new(false, 2f32, TemperatureModifier::None, 0f32),
         features: &[
             &[],
@@ -243,7 +241,6 @@ impl Biome {
     pub const BAMBOO_JUNGLE: Biome = Biome {
         id: 1,
         registry_id: "bamboo_jungle",
-        be_network_id: 48u8,
         weather: Weather::new(true, 0.95f32, TemperatureModifier::None, 0.9f32),
         features: &[
             &[],
@@ -416,7 +413,6 @@ impl Biome {
     pub const BASALT_DELTAS: Biome = Biome {
         id: 2,
         registry_id: "basalt_deltas",
-        be_network_id: 181u8,
         weather: Weather::new(false, 2f32, TemperatureModifier::None, 0f32),
         features: &[
             &[],
@@ -479,7 +475,6 @@ impl Biome {
     pub const BEACH: Biome = Biome {
         id: 3,
         registry_id: "beach",
-        be_network_id: 16u8,
         weather: Weather::new(true, 0.8f32, TemperatureModifier::None, 0.4f32),
         features: &[
             &[],
@@ -611,7 +606,6 @@ impl Biome {
     pub const BIRCH_FOREST: Biome = Biome {
         id: 4,
         registry_id: "birch_forest",
-        be_network_id: 27u8,
         weather: Weather::new(true, 0.6f32, TemperatureModifier::None, 0.6f32),
         features: &[
             &[],
@@ -764,7 +758,6 @@ impl Biome {
     pub const CHERRY_GROVE: Biome = Biome {
         id: 5,
         registry_id: "cherry_grove",
-        be_network_id: 192u8,
         weather: Weather::new(true, 0.5f32, TemperatureModifier::None, 0.8f32),
         features: &[
             &[],
@@ -906,7 +899,6 @@ impl Biome {
     pub const COLD_OCEAN: Biome = Biome {
         id: 6,
         registry_id: "cold_ocean",
-        be_network_id: 44u8,
         weather: Weather::new(true, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -1064,7 +1056,6 @@ impl Biome {
     pub const CRIMSON_FOREST: Biome = Biome {
         id: 7,
         registry_id: "crimson_forest",
-        be_network_id: 179u8,
         weather: Weather::new(false, 2f32, TemperatureModifier::None, 0f32),
         features: &[
             &[],
@@ -1134,7 +1125,6 @@ impl Biome {
     pub const DARK_FOREST: Biome = Biome {
         id: 8,
         registry_id: "dark_forest",
-        be_network_id: 29u8,
         weather: Weather::new(true, 0.7f32, TemperatureModifier::None, 0.8f32),
         features: &[
             &[],
@@ -1286,7 +1276,6 @@ impl Biome {
     pub const DEEP_COLD_OCEAN: Biome = Biome {
         id: 9,
         registry_id: "deep_cold_ocean",
-        be_network_id: 45u8,
         weather: Weather::new(true, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -1444,7 +1433,6 @@ impl Biome {
     pub const DEEP_DARK: Biome = Biome {
         id: 10,
         registry_id: "deep_dark",
-        be_network_id: 190u8,
         weather: Weather::new(true, 0.8f32, TemperatureModifier::None, 0.4f32),
         features: &[
             &[],
@@ -1520,7 +1508,6 @@ impl Biome {
     pub const DEEP_FROZEN_OCEAN: Biome = Biome {
         id: 11,
         registry_id: "deep_frozen_ocean",
-        be_network_id: 47u8,
         weather: Weather::new(true, 0.5f32, TemperatureModifier::Frozen, 0.5f32),
         features: &[
             &[],
@@ -1677,7 +1664,6 @@ impl Biome {
     pub const DEEP_LUKEWARM_OCEAN: Biome = Biome {
         id: 12,
         registry_id: "deep_lukewarm_ocean",
-        be_network_id: 43u8,
         weather: Weather::new(true, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -1845,7 +1831,6 @@ impl Biome {
     pub const DEEP_OCEAN: Biome = Biome {
         id: 13,
         registry_id: "deep_ocean",
-        be_network_id: 24u8,
         weather: Weather::new(true, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -2001,7 +1986,6 @@ impl Biome {
     pub const DESERT: Biome = Biome {
         id: 14,
         registry_id: "desert",
-        be_network_id: 2u8,
         weather: Weather::new(false, 2f32, TemperatureModifier::None, 0f32),
         features: &[
             &[],
@@ -2154,7 +2138,6 @@ impl Biome {
     pub const DRIPSTONE_CAVES: Biome = Biome {
         id: 15,
         registry_id: "dripstone_caves",
-        be_network_id: 188u8,
         weather: Weather::new(true, 0.8f32, TemperatureModifier::None, 0.4f32),
         features: &[
             &[],
@@ -2293,7 +2276,6 @@ impl Biome {
     pub const END_BARRENS: Biome = Biome {
         id: 16,
         registry_id: "end_barrens",
-        be_network_id: 9u8,
         weather: Weather::new(false, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[],
         creature_spawn_probability: 0.1f32,
@@ -2316,7 +2298,6 @@ impl Biome {
     pub const END_HIGHLANDS: Biome = Biome {
         id: 17,
         registry_id: "end_highlands",
-        be_network_id: 9u8,
         weather: Weather::new(false, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -2350,7 +2331,6 @@ impl Biome {
     pub const END_MIDLANDS: Biome = Biome {
         id: 18,
         registry_id: "end_midlands",
-        be_network_id: 9u8,
         weather: Weather::new(false, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[],
         creature_spawn_probability: 0.1f32,
@@ -2373,7 +2353,6 @@ impl Biome {
     pub const ERODED_BADLANDS: Biome = Biome {
         id: 19,
         registry_id: "eroded_badlands",
-        be_network_id: 165u8,
         weather: Weather::new(false, 2f32, TemperatureModifier::None, 0f32),
         features: &[
             &[],
@@ -2530,7 +2509,6 @@ impl Biome {
     pub const FLOWER_FOREST: Biome = Biome {
         id: 20,
         registry_id: "flower_forest",
-        be_network_id: 132u8,
         weather: Weather::new(true, 0.7f32, TemperatureModifier::None, 0.8f32),
         features: &[
             &[],
@@ -2686,7 +2664,6 @@ impl Biome {
     pub const FOREST: Biome = Biome {
         id: 21,
         registry_id: "forest",
-        be_network_id: 4u8,
         weather: Weather::new(true, 0.7f32, TemperatureModifier::None, 0.8f32),
         features: &[
             &[],
@@ -2843,7 +2820,6 @@ impl Biome {
     pub const FROZEN_OCEAN: Biome = Biome {
         id: 22,
         registry_id: "frozen_ocean",
-        be_network_id: 46u8,
         weather: Weather::new(true, 0f32, TemperatureModifier::Frozen, 0.5f32),
         features: &[
             &[],
@@ -3000,7 +2976,6 @@ impl Biome {
     pub const FROZEN_PEAKS: Biome = Biome {
         id: 23,
         registry_id: "frozen_peaks",
-        be_network_id: 183u8,
         weather: Weather::new(true, -0.7f32, TemperatureModifier::None, 0.9f32),
         features: &[
             &[],
@@ -3125,7 +3100,6 @@ impl Biome {
     pub const FROZEN_RIVER: Biome = Biome {
         id: 24,
         registry_id: "frozen_river",
-        be_network_id: 11u8,
         weather: Weather::new(true, 0f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -3268,7 +3242,6 @@ impl Biome {
     pub const GROVE: Biome = Biome {
         id: 25,
         registry_id: "grove",
-        be_network_id: 185u8,
         weather: Weather::new(true, -0.2f32, TemperatureModifier::None, 0.8f32),
         features: &[
             &[],
@@ -3409,7 +3382,6 @@ impl Biome {
     pub const ICE_SPIKES: Biome = Biome {
         id: 26,
         registry_id: "ice_spikes",
-        be_network_id: 140u8,
         weather: Weather::new(true, 0f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -3557,7 +3529,6 @@ impl Biome {
     pub const JAGGED_PEAKS: Biome = Biome {
         id: 27,
         registry_id: "jagged_peaks",
-        be_network_id: 182u8,
         weather: Weather::new(true, -0.7f32, TemperatureModifier::None, 0.9f32),
         features: &[
             &[],
@@ -3682,7 +3653,6 @@ impl Biome {
     pub const JUNGLE: Biome = Biome {
         id: 28,
         registry_id: "jungle",
-        be_network_id: 21u8,
         weather: Weather::new(true, 0.95f32, TemperatureModifier::None, 0.9f32),
         features: &[
             &[],
@@ -3855,7 +3825,6 @@ impl Biome {
     pub const LUKEWARM_OCEAN: Biome = Biome {
         id: 29,
         registry_id: "lukewarm_ocean",
-        be_network_id: 42u8,
         weather: Weather::new(true, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -4023,7 +3992,6 @@ impl Biome {
     pub const LUSH_CAVES: Biome = Biome {
         id: 30,
         registry_id: "lush_caves",
-        be_network_id: 187u8,
         weather: Weather::new(true, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -4161,7 +4129,6 @@ impl Biome {
     pub const MANGROVE_SWAMP: Biome = Biome {
         id: 31,
         registry_id: "mangrove_swamp",
-        be_network_id: 191u8,
         weather: Weather::new(true, 0.8f32, TemperatureModifier::None, 0.9f32),
         features: &[
             &[],
@@ -4307,7 +4274,6 @@ impl Biome {
     pub const MEADOW: Biome = Biome {
         id: 32,
         registry_id: "meadow",
-        be_network_id: 186u8,
         weather: Weather::new(true, 0.5f32, TemperatureModifier::None, 0.8f32),
         features: &[
             &[],
@@ -4450,7 +4416,6 @@ impl Biome {
     pub const MUSHROOM_FIELDS: Biome = Biome {
         id: 33,
         registry_id: "mushroom_fields",
-        be_network_id: 14u8,
         weather: Weather::new(true, 0.9f32, TemperatureModifier::None, 1f32),
         features: &[
             &[],
@@ -4539,7 +4504,6 @@ impl Biome {
     pub const NETHER_WASTES: Biome = Biome {
         id: 34,
         registry_id: "nether_wastes",
-        be_network_id: 8u8,
         weather: Weather::new(false, 2f32, TemperatureModifier::None, 0f32),
         features: &[
             &[],
@@ -4619,7 +4583,6 @@ impl Biome {
     pub const OCEAN: Biome = Biome {
         id: 35,
         registry_id: "ocean",
-        be_network_id: 0u8,
         weather: Weather::new(true, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -4775,7 +4738,6 @@ impl Biome {
     pub const OLD_GROWTH_BIRCH_FOREST: Biome = Biome {
         id: 36,
         registry_id: "old_growth_birch_forest",
-        be_network_id: 155u8,
         weather: Weather::new(true, 0.6f32, TemperatureModifier::None, 0.6f32),
         features: &[
             &[],
@@ -4928,7 +4890,6 @@ impl Biome {
     pub const OLD_GROWTH_PINE_TAIGA: Biome = Biome {
         id: 37,
         registry_id: "old_growth_pine_taiga",
-        be_network_id: 32u8,
         weather: Weather::new(true, 0.3f32, TemperatureModifier::None, 0.8f32),
         features: &[
             &[],
@@ -5101,7 +5062,6 @@ impl Biome {
     pub const OLD_GROWTH_SPRUCE_TAIGA: Biome = Biome {
         id: 38,
         registry_id: "old_growth_spruce_taiga",
-        be_network_id: 160u8,
         weather: Weather::new(true, 0.25f32, TemperatureModifier::None, 0.8f32),
         features: &[
             &[],
@@ -5274,7 +5234,6 @@ impl Biome {
     pub const PALE_GARDEN: Biome = Biome {
         id: 39,
         registry_id: "pale_garden",
-        be_network_id: 193u8,
         weather: Weather::new(true, 0.7f32, TemperatureModifier::None, 0.8f32),
         features: &[
             &[],
@@ -5403,7 +5362,6 @@ impl Biome {
     pub const PLAINS: Biome = Biome {
         id: 40,
         registry_id: "plains",
-        be_network_id: 1u8,
         weather: Weather::new(true, 0.8f32, TemperatureModifier::None, 0.4f32),
         features: &[
             &[],
@@ -5570,7 +5528,6 @@ impl Biome {
     pub const RIVER: Biome = Biome {
         id: 41,
         registry_id: "river",
-        be_network_id: 7u8,
         weather: Weather::new(true, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -5714,7 +5671,6 @@ impl Biome {
     pub const SAVANNA: Biome = Biome {
         id: 42,
         registry_id: "savanna",
-        be_network_id: 35u8,
         weather: Weather::new(false, 2f32, TemperatureModifier::None, 0f32),
         features: &[
             &[],
@@ -5885,7 +5841,6 @@ impl Biome {
     pub const SAVANNA_PLATEAU: Biome = Biome {
         id: 43,
         registry_id: "savanna_plateau",
-        be_network_id: 36u8,
         weather: Weather::new(false, 2f32, TemperatureModifier::None, 0f32),
         features: &[
             &[],
@@ -6066,7 +6021,6 @@ impl Biome {
     pub const SMALL_END_ISLANDS: Biome = Biome {
         id: 44,
         registry_id: "small_end_islands",
-        be_network_id: 9u8,
         weather: Weather::new(false, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[&[crate::placed_feature::PlacedFeature::EndIslandDecorated]],
         creature_spawn_probability: 0.1f32,
@@ -6089,7 +6043,6 @@ impl Biome {
     pub const SNOWY_BEACH: Biome = Biome {
         id: 45,
         registry_id: "snowy_beach",
-        be_network_id: 26u8,
         weather: Weather::new(true, 0.05f32, TemperatureModifier::None, 0.3f32),
         features: &[
             &[],
@@ -6217,7 +6170,6 @@ impl Biome {
     pub const SNOWY_PLAINS: Biome = Biome {
         id: 46,
         registry_id: "snowy_plains",
-        be_network_id: 12u8,
         weather: Weather::new(true, 0f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -6367,7 +6319,6 @@ impl Biome {
     pub const SNOWY_SLOPES: Biome = Biome {
         id: 47,
         registry_id: "snowy_slopes",
-        be_network_id: 184u8,
         weather: Weather::new(true, -0.3f32, TemperatureModifier::None, 0.9f32),
         features: &[
             &[],
@@ -6502,7 +6453,6 @@ impl Biome {
     pub const SNOWY_TAIGA: Biome = Biome {
         id: 48,
         registry_id: "snowy_taiga",
-        be_network_id: 30u8,
         weather: Weather::new(true, -0.5f32, TemperatureModifier::None, 0.4f32),
         features: &[
             &[],
@@ -6669,7 +6619,6 @@ impl Biome {
     pub const SOUL_SAND_VALLEY: Biome = Biome {
         id: 49,
         registry_id: "soul_sand_valley",
-        be_network_id: 178u8,
         weather: Weather::new(false, 2f32, TemperatureModifier::None, 0f32),
         features: &[
             &[],
@@ -6735,7 +6684,6 @@ impl Biome {
     pub const SPARSE_JUNGLE: Biome = Biome {
         id: 50,
         registry_id: "sparse_jungle",
-        be_network_id: 23u8,
         weather: Weather::new(true, 0.95f32, TemperatureModifier::None, 0.8f32),
         features: &[
             &[],
@@ -6897,7 +6845,6 @@ impl Biome {
     pub const STONY_PEAKS: Biome = Biome {
         id: 51,
         registry_id: "stony_peaks",
-        be_network_id: 189u8,
         weather: Weather::new(true, 1f32, TemperatureModifier::None, 0.3f32),
         features: &[
             &[],
@@ -7017,7 +6964,6 @@ impl Biome {
     pub const STONY_SHORE: Biome = Biome {
         id: 52,
         registry_id: "stony_shore",
-        be_network_id: 25u8,
         weather: Weather::new(true, 0.2f32, TemperatureModifier::None, 0.3f32),
         features: &[
             &[],
@@ -7142,138 +7088,9 @@ impl Biome {
         },
         spawn_costs: phf::phf_map! {},
     };
-    pub const SULFUR_CAVES: Biome = Biome {
-        id: 53,
-        registry_id: "sulfur_caves",
-        be_network_id: 1u8,
-        weather: Weather::new(true, 0.8f32, TemperatureModifier::None, 0.4f32),
-        features: &[
-            &[],
-            &[
-                crate::placed_feature::PlacedFeature::LakeLavaUnderground,
-                crate::placed_feature::PlacedFeature::LakeLavaSurface,
-                crate::placed_feature::PlacedFeature::RootedSulfurSpring,
-                crate::placed_feature::PlacedFeature::SulfurPool,
-            ],
-            &[crate::placed_feature::PlacedFeature::AmethystGeode],
-            &[
-                crate::placed_feature::PlacedFeature::MonsterRoom,
-                crate::placed_feature::PlacedFeature::MonsterRoomDeep,
-            ],
-            &[],
-            &[],
-            &[
-                crate::placed_feature::PlacedFeature::OreDirt,
-                crate::placed_feature::PlacedFeature::OreGravel,
-                crate::placed_feature::PlacedFeature::OreGraniteUpper,
-                crate::placed_feature::PlacedFeature::OreGraniteLower,
-                crate::placed_feature::PlacedFeature::OreDioriteUpper,
-                crate::placed_feature::PlacedFeature::OreDioriteLower,
-                crate::placed_feature::PlacedFeature::OreAndesiteUpper,
-                crate::placed_feature::PlacedFeature::OreAndesiteLower,
-                crate::placed_feature::PlacedFeature::OreTuff,
-                crate::placed_feature::PlacedFeature::OreCoalUpper,
-                crate::placed_feature::PlacedFeature::OreCoalLower,
-                crate::placed_feature::PlacedFeature::OreIronUpper,
-                crate::placed_feature::PlacedFeature::OreIronMiddle,
-                crate::placed_feature::PlacedFeature::OreIronSmall,
-                crate::placed_feature::PlacedFeature::OreGold,
-                crate::placed_feature::PlacedFeature::OreGoldLower,
-                crate::placed_feature::PlacedFeature::OreRedstone,
-                crate::placed_feature::PlacedFeature::OreRedstoneLower,
-                crate::placed_feature::PlacedFeature::OreDiamond,
-                crate::placed_feature::PlacedFeature::OreDiamondMedium,
-                crate::placed_feature::PlacedFeature::OreDiamondLarge,
-                crate::placed_feature::PlacedFeature::OreDiamondBuried,
-                crate::placed_feature::PlacedFeature::OreLapis,
-                crate::placed_feature::PlacedFeature::OreLapisBuried,
-                crate::placed_feature::PlacedFeature::OreCopper,
-                crate::placed_feature::PlacedFeature::UnderwaterMagma,
-                crate::placed_feature::PlacedFeature::DiskSand,
-                crate::placed_feature::PlacedFeature::DiskClay,
-                crate::placed_feature::PlacedFeature::DiskGravel,
-            ],
-            &[
-                crate::placed_feature::PlacedFeature::SulfurSpikeCluster,
-                crate::placed_feature::PlacedFeature::SulfurSpike,
-            ],
-            &[
-                crate::placed_feature::PlacedFeature::SpringWater,
-                crate::placed_feature::PlacedFeature::SpringLava,
-            ],
-            &[
-                crate::placed_feature::PlacedFeature::GlowLichen,
-                crate::placed_feature::PlacedFeature::PatchTallGrass2,
-            ],
-            &[crate::placed_feature::PlacedFeature::FreezeTopLayer],
-        ],
-        creature_spawn_probability: 0.1f32,
-        spawners: SpawnGroups {
-            monster: &[
-                Spawner {
-                    r#type: "minecraft:sulfur_cube",
-                    min_count: 2i32,
-                    max_count: 4i32,
-                },
-                Spawner {
-                    r#type: "minecraft:creeper",
-                    min_count: 2i32,
-                    max_count: 2i32,
-                },
-                Spawner {
-                    r#type: "minecraft:skeleton",
-                    min_count: 2i32,
-                    max_count: 2i32,
-                },
-                Spawner {
-                    r#type: "minecraft:slime",
-                    min_count: 1i32,
-                    max_count: 1i32,
-                },
-                Spawner {
-                    r#type: "minecraft:cave_spider",
-                    min_count: 1i32,
-                    max_count: 1i32,
-                },
-                Spawner {
-                    r#type: "minecraft:zombie",
-                    min_count: 2i32,
-                    max_count: 2i32,
-                },
-                Spawner {
-                    r#type: "minecraft:enderman",
-                    min_count: 1i32,
-                    max_count: 1i32,
-                },
-                Spawner {
-                    r#type: "minecraft:witch",
-                    min_count: 1i32,
-                    max_count: 1i32,
-                },
-                Spawner {
-                    r#type: "minecraft:zombie_villager",
-                    min_count: 1i32,
-                    max_count: 1i32,
-                },
-            ],
-            ambient: &[Spawner {
-                r#type: "minecraft:bat",
-                min_count: 8i32,
-                max_count: 8i32,
-            }],
-            axolotls: &[],
-            creature: &[],
-            misc: &[],
-            underground_water_creature: &[],
-            water_ambient: &[],
-            water_creature: &[],
-        },
-        spawn_costs: phf::phf_map! {},
-    };
     pub const SUNFLOWER_PLAINS: Biome = Biome {
-        id: 54,
+        id: 53,
         registry_id: "sunflower_plains",
-        be_network_id: 129u8,
         weather: Weather::new(true, 0.8f32, TemperatureModifier::None, 0.4f32),
         features: &[
             &[],
@@ -7438,9 +7255,8 @@ impl Biome {
         spawn_costs: phf::phf_map! {},
     };
     pub const SWAMP: Biome = Biome {
-        id: 55,
+        id: 54,
         registry_id: "swamp",
-        be_network_id: 6u8,
         weather: Weather::new(true, 0.8f32, TemperatureModifier::None, 0.9f32),
         features: &[
             &[],
@@ -7609,9 +7425,8 @@ impl Biome {
         spawn_costs: phf::phf_map! {},
     };
     pub const TAIGA: Biome = Biome {
-        id: 56,
+        id: 55,
         registry_id: "taiga",
-        be_network_id: 5u8,
         weather: Weather::new(true, 0.25f32, TemperatureModifier::None, 0.8f32),
         features: &[
             &[],
@@ -7776,9 +7591,8 @@ impl Biome {
         spawn_costs: phf::phf_map! {},
     };
     pub const THE_END: Biome = Biome {
-        id: 57,
+        id: 56,
         registry_id: "the_end",
-        be_network_id: 9u8,
         weather: Weather::new(false, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -7811,9 +7625,8 @@ impl Biome {
         spawn_costs: phf::phf_map! {},
     };
     pub const THE_VOID: Biome = Biome {
-        id: 58,
+        id: 57,
         registry_id: "the_void",
-        be_network_id: 7u8,
         weather: Weather::new(false, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -7842,9 +7655,8 @@ impl Biome {
         spawn_costs: phf::phf_map! {},
     };
     pub const WARM_OCEAN: Biome = Biome {
-        id: 59,
+        id: 58,
         registry_id: "warm_ocean",
-        be_network_id: 40u8,
         weather: Weather::new(true, 0.5f32, TemperatureModifier::None, 0.5f32),
         features: &[
             &[],
@@ -8006,9 +7818,8 @@ impl Biome {
         spawn_costs: phf::phf_map! {},
     };
     pub const WARPED_FOREST: Biome = Biome {
-        id: 60,
+        id: 59,
         registry_id: "warped_forest",
-        be_network_id: 180u8,
         weather: Weather::new(false, 2f32, TemperatureModifier::None, 0f32),
         features: &[
             &[],
@@ -8066,9 +7877,8 @@ impl Biome {
         spawn_costs: phf::phf_map! { "enderman" => SpawnCosts { energy_budget : 0.12f64 , charge : 1f64 , } },
     };
     pub const WINDSWEPT_FOREST: Biome = Biome {
-        id: 61,
+        id: 60,
         registry_id: "windswept_forest",
-        be_network_id: 34u8,
         weather: Weather::new(true, 0.2f32, TemperatureModifier::None, 0.3f32),
         features: &[
             &[],
@@ -8223,9 +8033,8 @@ impl Biome {
         spawn_costs: phf::phf_map! {},
     };
     pub const WINDSWEPT_GRAVELLY_HILLS: Biome = Biome {
-        id: 62,
+        id: 61,
         registry_id: "windswept_gravelly_hills",
-        be_network_id: 131u8,
         weather: Weather::new(true, 0.2f32, TemperatureModifier::None, 0.3f32),
         features: &[
             &[],
@@ -8380,9 +8189,8 @@ impl Biome {
         spawn_costs: phf::phf_map! {},
     };
     pub const WINDSWEPT_HILLS: Biome = Biome {
-        id: 63,
+        id: 62,
         registry_id: "windswept_hills",
-        be_network_id: 3u8,
         weather: Weather::new(true, 0.2f32, TemperatureModifier::None, 0.3f32),
         features: &[
             &[],
@@ -8537,9 +8345,8 @@ impl Biome {
         spawn_costs: phf::phf_map! {},
     };
     pub const WINDSWEPT_SAVANNA: Biome = Biome {
-        id: 64,
+        id: 63,
         registry_id: "windswept_savanna",
-        be_network_id: 163u8,
         weather: Weather::new(false, 2f32, TemperatureModifier::None, 0f32),
         features: &[
             &[],
@@ -8707,9 +8514,8 @@ impl Biome {
         spawn_costs: phf::phf_map! {},
     };
     pub const WOODED_BADLANDS: Biome = Biome {
-        id: 65,
+        id: 64,
         registry_id: "wooded_badlands",
-        be_network_id: 38u8,
         weather: Weather::new(false, 2f32, TemperatureModifier::None, 0f32),
         features: &[
             &[],
@@ -8869,74 +8675,6 @@ impl Biome {
         },
         spawn_costs: phf::phf_map! {},
     };
-    pub const ALL: &'static [&'static Self] = &[
-        &Self::BADLANDS,
-        &Self::BAMBOO_JUNGLE,
-        &Self::BASALT_DELTAS,
-        &Self::BEACH,
-        &Self::BIRCH_FOREST,
-        &Self::CHERRY_GROVE,
-        &Self::COLD_OCEAN,
-        &Self::CRIMSON_FOREST,
-        &Self::DARK_FOREST,
-        &Self::DEEP_COLD_OCEAN,
-        &Self::DEEP_DARK,
-        &Self::DEEP_FROZEN_OCEAN,
-        &Self::DEEP_LUKEWARM_OCEAN,
-        &Self::DEEP_OCEAN,
-        &Self::DESERT,
-        &Self::DRIPSTONE_CAVES,
-        &Self::END_BARRENS,
-        &Self::END_HIGHLANDS,
-        &Self::END_MIDLANDS,
-        &Self::ERODED_BADLANDS,
-        &Self::FLOWER_FOREST,
-        &Self::FOREST,
-        &Self::FROZEN_OCEAN,
-        &Self::FROZEN_PEAKS,
-        &Self::FROZEN_RIVER,
-        &Self::GROVE,
-        &Self::ICE_SPIKES,
-        &Self::JAGGED_PEAKS,
-        &Self::JUNGLE,
-        &Self::LUKEWARM_OCEAN,
-        &Self::LUSH_CAVES,
-        &Self::MANGROVE_SWAMP,
-        &Self::MEADOW,
-        &Self::MUSHROOM_FIELDS,
-        &Self::NETHER_WASTES,
-        &Self::OCEAN,
-        &Self::OLD_GROWTH_BIRCH_FOREST,
-        &Self::OLD_GROWTH_PINE_TAIGA,
-        &Self::OLD_GROWTH_SPRUCE_TAIGA,
-        &Self::PALE_GARDEN,
-        &Self::PLAINS,
-        &Self::RIVER,
-        &Self::SAVANNA,
-        &Self::SAVANNA_PLATEAU,
-        &Self::SMALL_END_ISLANDS,
-        &Self::SNOWY_BEACH,
-        &Self::SNOWY_PLAINS,
-        &Self::SNOWY_SLOPES,
-        &Self::SNOWY_TAIGA,
-        &Self::SOUL_SAND_VALLEY,
-        &Self::SPARSE_JUNGLE,
-        &Self::STONY_PEAKS,
-        &Self::STONY_SHORE,
-        &Self::SULFUR_CAVES,
-        &Self::SUNFLOWER_PLAINS,
-        &Self::SWAMP,
-        &Self::TAIGA,
-        &Self::THE_END,
-        &Self::THE_VOID,
-        &Self::WARM_OCEAN,
-        &Self::WARPED_FOREST,
-        &Self::WINDSWEPT_FOREST,
-        &Self::WINDSWEPT_GRAVELLY_HILLS,
-        &Self::WINDSWEPT_HILLS,
-        &Self::WINDSWEPT_SAVANNA,
-        &Self::WOODED_BADLANDS,
-    ];
     pub fn from_name(name: &str) -> Option<&'static Self> {
         match name {
             "badlands" => Some(&Self::BADLANDS),
@@ -8992,7 +8730,6 @@ impl Biome {
             "sparse_jungle" => Some(&Self::SPARSE_JUNGLE),
             "stony_peaks" => Some(&Self::STONY_PEAKS),
             "stony_shore" => Some(&Self::STONY_SHORE),
-            "sulfur_caves" => Some(&Self::SULFUR_CAVES),
             "sunflower_plains" => Some(&Self::SUNFLOWER_PLAINS),
             "swamp" => Some(&Self::SWAMP),
             "taiga" => Some(&Self::TAIGA),
@@ -9063,19 +8800,18 @@ impl Biome {
             50 => Some(&Self::SPARSE_JUNGLE),
             51 => Some(&Self::STONY_PEAKS),
             52 => Some(&Self::STONY_SHORE),
-            53 => Some(&Self::SULFUR_CAVES),
-            54 => Some(&Self::SUNFLOWER_PLAINS),
-            55 => Some(&Self::SWAMP),
-            56 => Some(&Self::TAIGA),
-            57 => Some(&Self::THE_END),
-            58 => Some(&Self::THE_VOID),
-            59 => Some(&Self::WARM_OCEAN),
-            60 => Some(&Self::WARPED_FOREST),
-            61 => Some(&Self::WINDSWEPT_FOREST),
-            62 => Some(&Self::WINDSWEPT_GRAVELLY_HILLS),
-            63 => Some(&Self::WINDSWEPT_HILLS),
-            64 => Some(&Self::WINDSWEPT_SAVANNA),
-            65 => Some(&Self::WOODED_BADLANDS),
+            53 => Some(&Self::SUNFLOWER_PLAINS),
+            54 => Some(&Self::SWAMP),
+            55 => Some(&Self::TAIGA),
+            56 => Some(&Self::THE_END),
+            57 => Some(&Self::THE_VOID),
+            58 => Some(&Self::WARM_OCEAN),
+            59 => Some(&Self::WARPED_FOREST),
+            60 => Some(&Self::WINDSWEPT_FOREST),
+            61 => Some(&Self::WINDSWEPT_GRAVELLY_HILLS),
+            62 => Some(&Self::WINDSWEPT_HILLS),
+            63 => Some(&Self::WINDSWEPT_SAVANNA),
+            64 => Some(&Self::WOODED_BADLANDS),
             _ => None,
         }
     }

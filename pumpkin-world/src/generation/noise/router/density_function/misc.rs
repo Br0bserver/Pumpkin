@@ -1,15 +1,20 @@
 use std::sync::Arc;
 
-use pumpkin_data::noise_router::{ClampedYGradientData, RangeChoiceData};
+use pumpkin_data::noise_router::{
+    ClampedYGradientData, RangeChoiceData, WeirdScaledData, WeirdScaledMapper,
+};
 use pumpkin_util::{
     math::{clamped_map, vector3::Vector3},
     noise::simplex::SimplexNoiseSampler,
     random::{RandomImpl, legacy_rand::LegacyRand},
 };
 
-use crate::generation::noise::router::{
-    chunk_density_function::ChunkNoiseFunctionSampleOptions,
-    chunk_noise_router::{ChunkNoiseFunctionComponent, StaticChunkNoiseFunctionComponentImpl},
+use crate::generation::{
+    noise::perlin::DoublePerlinNoiseSampler,
+    noise::router::{
+        chunk_density_function::ChunkNoiseFunctionSampleOptions,
+        chunk_noise_router::{ChunkNoiseFunctionComponent, StaticChunkNoiseFunctionComponentImpl},
+    },
 };
 
 use super::{
@@ -78,59 +83,48 @@ impl StaticIndependentChunkNoiseFunctionComponentImpl for EndIsland {
     }
 }
 
-pub struct IntervalSelect {
+pub struct WeirdScaled {
     pub input_index: usize,
-    pub thresholds: &'static [f64],
-    pub functions_indices: &'static [usize],
-    min_value: f64,
-    max_value: f64,
+    pub sampler: DoublePerlinNoiseSampler,
+    pub mapper: WeirdScaledMapper,
 }
 
-impl IntervalSelect {
+impl WeirdScaled {
     pub const fn new(
         input_index: usize,
-        thresholds: &'static [f64],
-        functions_indices: &'static [usize],
-        min_value: f64,
-        max_value: f64,
+        sampler: DoublePerlinNoiseSampler,
+        data: &WeirdScaledData,
     ) -> Self {
         Self {
             input_index,
-            thresholds,
-            functions_indices,
-            min_value,
-            max_value,
+            sampler,
+            mapper: data.mapper,
         }
     }
 }
 
-impl StaticChunkNoiseFunctionComponentImpl for IntervalSelect {
+impl StaticChunkNoiseFunctionComponentImpl for WeirdScaled {
     fn sample(
         &self,
         component_stack: &mut [ChunkNoiseFunctionComponent],
         pos: &Vector3<i32>,
         sample_options: &ChunkNoiseFunctionSampleOptions,
     ) -> f64 {
-        let input_val = ChunkNoiseFunctionComponent::sample_from_stack(
+        let input_density = ChunkNoiseFunctionComponent::sample_from_stack(
             &mut component_stack[..=self.input_index],
             pos,
             sample_options,
         );
-
-        let mut selected_index = self.thresholds.len();
-        for (i, &threshold) in self.thresholds.iter().enumerate() {
-            if input_val < threshold {
-                selected_index = i;
-                break;
-            }
-        }
-
-        let func_index = self.functions_indices[selected_index];
-        ChunkNoiseFunctionComponent::sample_from_stack(
-            &mut component_stack[..=func_index],
-            pos,
-            sample_options,
-        )
+        let scaled_density = self.mapper.scale(input_density);
+        scaled_density
+            * self
+                .sampler
+                .sample(
+                    pos.x as f64 / scaled_density,
+                    pos.y as f64 / scaled_density,
+                    pos.z as f64 / scaled_density,
+                )
+                .abs()
     }
 
     fn fill(
@@ -149,35 +143,29 @@ impl StaticChunkNoiseFunctionComponentImpl for IntervalSelect {
 
         array.iter_mut().enumerate().for_each(|(index, value)| {
             let pos = mapper.at(index, Some(sample_options));
-            let input_val = *value;
-
-            let mut selected_index = self.thresholds.len();
-            for (i, &threshold) in self.thresholds.iter().enumerate() {
-                if input_val < threshold {
-                    selected_index = i;
-                    break;
-                }
-            }
-
-            let func_index = self.functions_indices[selected_index];
-            *value = ChunkNoiseFunctionComponent::sample_from_stack(
-                &mut component_stack[..=func_index],
-                &pos,
-                sample_options,
-            );
+            let scaled_density = self.mapper.scale(*value);
+            *value = scaled_density
+                * self
+                    .sampler
+                    .sample(
+                        pos.x as f64 / scaled_density,
+                        pos.y as f64 / scaled_density,
+                        pos.z as f64 / scaled_density,
+                    )
+                    .abs();
         });
     }
 }
 
-impl NoiseFunctionComponentRange for IntervalSelect {
+impl NoiseFunctionComponentRange for WeirdScaled {
     #[inline]
     fn min(&self) -> f64 {
-        self.min_value
+        -self.max()
     }
 
     #[inline]
     fn max(&self) -> f64 {
-        self.max_value
+        self.sampler.max_value() * self.mapper.max_multiplier()
     }
 }
 

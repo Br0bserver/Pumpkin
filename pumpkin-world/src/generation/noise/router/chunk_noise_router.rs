@@ -94,19 +94,13 @@ impl ChunkNoiseFunctionComponent<'_> {
                 IndependentProtoNoiseFunctionComponent::ShiftB(_) => "ShiftB".into(),
             },
             Self::Dependent(dependent) => match dependent {
-                DependentProtoNoiseFunctionComponent::Spline(spine) => {
-                    let a = stack[spine.spline.input_index].display_test(stack);
-                    format!("Spline({})", a)
-                }
+                DependentProtoNoiseFunctionComponent::Spline(spine) => "Spline(todo)".into(),
                 DependentProtoNoiseFunctionComponent::Unary(x) => {
                     let a = stack[x.input_index].display_test(stack);
                     format!("Unary({})", a)
                 }
                 DependentProtoNoiseFunctionComponent::ShiftedNoise(x) => {
-                    let a = stack[x.input_x_index].display_test(stack);
-                    let b = stack[x.input_y_index].display_test(stack);
-                    let c = stack[x.input_z_index].display_test(stack);
-                    format!("ShiftedNoise({}, {}, {})", a, b, c)
+                    format!("ShiftedNoise(todo)")
                 }
                 DependentProtoNoiseFunctionComponent::Linear(x) => {
                     let a = stack[x.input_index].display_test(stack);
@@ -117,21 +111,16 @@ impl ChunkNoiseFunctionComponent<'_> {
                     let b = stack[x.input2_index].display_test(stack);
                     format!("Binary({}, {})", a, b)
                 }
-                DependentProtoNoiseFunctionComponent::IntervalSelect(x) => {
-                    let a = stack[x.input_index].display_test(stack);
-                    format!("IntervalSelect({})", a)
+                DependentProtoNoiseFunctionComponent::WeirdScaled(x) => {
+                    format!("WeirdScaled(todo)")
                 }
                 DependentProtoNoiseFunctionComponent::Clamp(x) => {
-                    let a = stack[x.input_index].display_test(stack);
-                    format!("Clamp({})", a)
+                    format!("Clamp(todo)")
                 }
                 DependentProtoNoiseFunctionComponent::RangeChoice(x) => {
                     let when_in = stack[x.when_in_index].display_test(stack);
                     let when_out = stack[x.when_out_index].display_test(stack);
                     format!("RangeChoice({}, {})", when_in, when_out)
-                }
-                DependentProtoNoiseFunctionComponent::FindTopSurface(_) => {
-                    format!("FindTopSurface")
                 }
             },
             Self::Chunk(chunk) => match &**chunk {
@@ -340,7 +329,6 @@ impl ChunkNoiseRouter<'_> {
 
 impl<'a> ChunkNoiseRouter<'a> {
     #[must_use]
-    #[expect(clippy::too_many_lines)]
     pub fn generate(
         base: &'a ProtoNoiseRouter,
         build_options: &ChunkNoiseFunctionBuilderOptions,
