@@ -486,6 +486,63 @@ impl JigsawPlacement {
                                         .iter()
                                         .any(|box_| boxes_intersect(box_, &target_collision_box));
 
+                                if context
+                                    .random
+                                    .bounded_trace_call()
+                                    .is_some_and(|call| call == 14_782)
+                                {
+                                    let collisions = space
+                                        .occupied
+                                        .iter()
+                                        .enumerate()
+                                        .filter(|(_, box_)| {
+                                            boxes_intersect(box_, &target_collision_box)
+                                        })
+                                        .map(|(index, box_)| {
+                                            format!(
+                                                "{index}:({},{},{}..{},{},{})",
+                                                box_.min.x,
+                                                box_.min.y,
+                                                box_.min.z,
+                                                box_.max.x,
+                                                box_.max.y,
+                                                box_.max.z
+                                            )
+                                        })
+                                        .collect::<Vec<_>>();
+                                    let mut templates = Vec::new();
+                                    element.for_each_template(|name, _, _, _| {
+                                        templates.push(name.to_owned());
+                                    });
+                                    println!(
+                                        "PUMPKIN_CANDIDATE source_piece={source_piece_idx} source_jigsaw=({},{},{}) facing={:?} templates={templates:?} rotation={target_rotation:?} target_jigsaw=({},{},{}) target_pos=({},{},{}) box=({},{},{}..{},{},{}) collision_box=({},{},{}..{},{},{}) space={} inside={} collisions={collisions:?} can_place={can_place}",
+                                        source_jigsaw_pos.0.x,
+                                        source_jigsaw_pos.0.y,
+                                        source_jigsaw_pos.0.z,
+                                        source_facing,
+                                        target_jigsaw.pos.0.x,
+                                        target_jigsaw.pos.0.y,
+                                        target_jigsaw.pos.0.z,
+                                        target_pos.0.x,
+                                        target_pos.0.y,
+                                        target_pos.0.z,
+                                        target_box.min.x,
+                                        target_box.min.y,
+                                        target_box.min.z,
+                                        target_box.max.x,
+                                        target_box.max.y,
+                                        target_box.max.z,
+                                        target_collision_box.min.x,
+                                        target_collision_box.min.y,
+                                        target_collision_box.min.z,
+                                        target_collision_box.max.x,
+                                        target_collision_box.max.y,
+                                        target_collision_box.max.z,
+                                        collision_space,
+                                        is_box_inside(&space.bounds, &target_collision_box),
+                                    );
+                                }
+
                                 if can_place {
                                     collision_spaces[collision_space]
                                         .occupied
