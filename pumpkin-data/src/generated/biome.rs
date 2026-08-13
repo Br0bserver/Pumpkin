@@ -8903,13 +8903,14 @@ pub struct ParameterRange {
 }
 impl ParameterRange {
     pub fn calc_distance(&self, noise: i64) -> i64 {
-        if noise > self.max {
+        let distance = if noise > self.max {
             noise - self.max
         } else if noise < self.min {
             self.min - noise
         } else {
             0
-        }
+        };
+        distance * distance
     }
 }
 #[derive(PartialEq)]
