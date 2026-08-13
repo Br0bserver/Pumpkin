@@ -331,6 +331,9 @@ impl JigsawPlacement {
                                 target_jigsaws_shuffled.swap(i, j);
                             }
 
+                            target_jigsaws_shuffled.sort_by_key(|jigsaw| {
+                                std::cmp::Reverse(jigsaw.selection_priority)
+                            });
                             for target_jigsaw in target_jigsaws_shuffled {
                                 if !can_attach(source_jigsaw, &target_jigsaw, target_rotation) {
                                     continue;
