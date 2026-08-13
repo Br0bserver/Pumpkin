@@ -515,11 +515,13 @@ impl JigsawPlacement {
                                         templates.push(name.to_owned());
                                     });
                                     println!(
-                                        "PUMPKIN_CANDIDATE source_piece={source_piece_idx} source_jigsaw=({},{},{}) facing={:?} templates={templates:?} rotation={target_rotation:?} target_jigsaw=({},{},{}) target_pos=({},{},{}) box=({},{},{}..{},{},{}) collision_box=({},{},{}..{},{},{}) space={} inside={} collisions={collisions:?} can_place={can_place}",
+                                        "PUMPKIN_CANDIDATE source_piece={source_piece_idx} source_jigsaw=({},{},{}) facing=({},{},{}) templates={templates:?} rotation={target_rotation:?} target_jigsaw=({},{},{}) target_pos=({},{},{}) box=({},{},{}..{},{},{}) collision_box=({},{},{}..{},{},{}) space={} inside={} collisions={collisions:?} can_place={can_place}",
                                         source_jigsaw_pos.0.x,
                                         source_jigsaw_pos.0.y,
                                         source_jigsaw_pos.0.z,
-                                        source_facing,
+                                        source_facing.to_vector().x,
+                                        source_facing.to_vector().y,
+                                        source_facing.to_vector().z,
                                         target_jigsaw.pos.0.x,
                                         target_jigsaw.pos.0.y,
                                         target_jigsaw.pos.0.z,
