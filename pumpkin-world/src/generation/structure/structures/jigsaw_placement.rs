@@ -442,14 +442,14 @@ impl JigsawPlacement {
                                         target_collision_box.min.y + max_y_offset;
                                 }
 
-                                let collision_space = if source_collision_box.contains(
+                                let collision_space = if source_box.contains(
                                     target_jigsaw_pos.0.x,
                                     target_jigsaw_pos.0.y,
                                     target_jigsaw_pos.0.z,
                                 ) {
                                     *interior_collision_space.get_or_insert_with(|| {
                                         collision_spaces.push(CollisionSpace {
-                                            bounds: source_collision_box,
+                                            bounds: source_box,
                                             occupied: Vec::new(),
                                         });
                                         collision_spaces.len() - 1
